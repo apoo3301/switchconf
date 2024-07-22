@@ -16,4 +16,14 @@ ssh_session connect(const char *hostname, const char *username, const char *pass
         fprintf(stderr, "Error creating ssh session\n");
         return NULL;
     }
+
+    ssh_options_set(session, SSH_OPTIONS_HOST, hostname);
+    ssh_options_set(session, SSH_OPTIONS_USER, username);
+
+    rc = ssh_connect(session);
+    if (rc != SSH_OK) {
+        fprintf(stderr, "Error connecting to %s: %s\n", hostname, ssh_get_error(session));
+        ssh_free(session); //to keep your ram alive
+        return NULL;
+    }
 }
