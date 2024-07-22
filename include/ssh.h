@@ -12,8 +12,8 @@
     #include <stdlib.h>
     #include <stdio.h>
 
+    ssh_session connect(const char *hostname, const char *username, const char *password);
     int authentification_password(ssh_session session, const char *password);
-
 
 
 #endif
