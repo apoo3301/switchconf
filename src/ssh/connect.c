@@ -7,7 +7,7 @@
 
 #include "../../include/ssh.h"
 
-ssh_session connect(const char *hostname, const char *username, const char *password) {
+ssh_session ssh_connect_session (const char *hostname, const char *username, const char *password) {
     ssh_session session;
     int rc;
 

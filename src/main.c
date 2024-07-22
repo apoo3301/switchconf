@@ -8,11 +8,11 @@
 #include "../include/ssh.h"
 
 int main() {
-    const char *hostname = ""; //ip or domain
-    const char *username = ""; //username
-    const char *password = ""; //password
+    const char *hostname = "172.21.51.89"; //ip or domain
+    const char *username = "apoo"; //username
+    const char *password = "root"; //password
 
-    ssh_session session = connect(hostname, username, password);
+    ssh_session session = ssh_connect_session(hostname, username, password);
     if (session == NULL) {
         fprintf(stderr, "Error connecting to %s\n", hostname);
         return -1;
