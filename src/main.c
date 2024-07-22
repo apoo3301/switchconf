@@ -11,6 +11,7 @@ int main() {
     const char *hostname = "172.21.51.89"; //ip or domain
     const char *username = "apoo"; //username
     const char *password = "root"; //password
+    char command[256];
 
     ssh_session session = ssh_connect_session(hostname, username, password);
     if (session == NULL) {
@@ -20,8 +21,29 @@ int main() {
 
     printf("Connected to %s\n", hostname);
 
+    while(1) {
+        printf("ssh> ");
+        if (fgets(command, sizeof(command), stdin) == NULL) {
+            fprintf(stderr, "Error reading command\n");
+            break;
+        }
+
+        size_t len = strlen(command);
+        if (len > 0 && command[len - 1] == '\n') {
+            command[len - 1] = '\0';
+        }
+
+        if (strcmp(command, "exit") == 0) {
+            break;
+        }
+
+        if (execute_command(session, command) != SSH_OK) {
+            fprintf(stderr, "Error executing command.\n");
+        }
+    }
+
     ssh_disconnect(session);
-    ssh_free(session); //to keep your ram alive bis
+    ssh_free(session);
 
     return 0;
 }
