@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ssh.h": "c"
+        "ssh.h": "c",
+        "shell.h": "c"
     }
 }
