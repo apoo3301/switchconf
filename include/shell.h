@@ -8,8 +8,12 @@
 #ifndef INCLUDED_SHELL_H
     #define INCLUDED_SHELL_H
 
-    #include "./ssh.h"
+    #include <libssh/libssh.h>
+    #include <stdlib.h>
+    #include <stdio.h>
     #include <string.h>
+
+    int execute_command(ssh_session session, const char *command);
 
 #endif
 
