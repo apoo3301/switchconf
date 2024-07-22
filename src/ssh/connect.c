@@ -26,4 +26,14 @@ ssh_session connect(const char *hostname, const char *username, const char *pass
         ssh_free(session); //to keep your ram alive
         return NULL;
     }
+
+    rc = ssh_userauth_password(session, NULL, password);
+    if (rc != SSH_AUTH_SUCCESS) {
+        fprintf(stderr, "Error authenticating with password: %s\n", ssh_get_error(session));
+        ssh_disconnect(session);
+        ssh_free(session);
+        return NULL;
+    }
+
+    return session;
 }
