@@ -17,3 +17,30 @@
 ##                                                                                     ##
 ## ----------------------------------------------------------------------------------- ##
 
+NAME = switchconff
+
+SRC = ./src/main.c \
+	  ./src/ssh/auth.c \
+	  ./src/ssh/connect.c \
+##    ./ src/parsing/
+
+
+OBJ = $(SRC:.c=.o)
+
+rm = rm -f
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	gcc $(OBJ) -o $(NAME) -g3
+
+%.o: %.c
+	gcc -o $@ -c $< -g3
+
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+		$(RM) $(NAME)
+
+re: fclean all
