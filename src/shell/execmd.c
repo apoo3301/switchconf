@@ -48,4 +48,4 @@ int execute_command(ssh_session session, const char *command) {
     ssh_channel_free(channel);
 
     return SSH_OK;
-} 
+}

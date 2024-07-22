@@ -13,6 +13,7 @@
     #include <stdio.h>
     #include <string.h>
 
+    void infocmd(ssh_session session);
     int execute_command(ssh_session session, const char *command);
 
 #endif

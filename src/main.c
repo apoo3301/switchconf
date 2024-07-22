@@ -37,6 +37,11 @@ int main() {
             break;
         }
 
+        if (strcmp(command, "info") == 0) {
+            infocmd(session);
+            continue;
+        }
+
         if (execute_command(session, command) != SSH_OK) {
             fprintf(stderr, "Error executing command.\n");
         }

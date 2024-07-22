@@ -18,25 +18,23 @@
 ## ----------------------------------------------------------------------------------- ##
 
 CC = gcc
-CFLAGS = -g3
+CFLAGS = -g3 -Iinclude
 LDFLAGS = -lssh
+
 SRC_DIR = src
 OBJ_DIR = obj
+BIN = switchconff
 
-SOURCES = $(wildcard $(SRC_DIR)/**/*.c $(SRC_DIR)/*.c)
-OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-TARGET = switchconff
+SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/ssh/auth.c $(SRC_DIR)/ssh/connect.c $(SRC_DIR)/shell/execmd.c $(SRC_DIR)/shell/command/info.c
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/ssh/auth.o $(OBJ_DIR)/ssh/connect.o $(SRC_DIR)/shell/execmd.o $(SRC_DIR)/shell/command/info.c
 
-all: $(TARGET)
+all: $(BIN)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+$(BIN): $(OBJS)
+	$(CC) $(OBJS) -o $(BIN) $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET)
-
-.PHONY: all clean
+	rm -f $(OBJ_DIR)/*.o $(BIN)
