@@ -7,24 +7,25 @@
 
 #include "../include/ssh.h"
 
+
 int main() {
-    const char *hostname = "172.21.51.89"; //ip or domain
-    const char *username = "apoo"; //username
-    const char *password = "root"; //password
+    const char *hostname = "172.21.51.89";
+    const char *username = "apoo";
+    const char *password = "root";
     char command[256];
 
     ssh_session session = ssh_connect_session(hostname, username, password);
     if (session == NULL) {
-        fprintf(stderr, "Error connecting to %s\n", hostname);
+        fprintf(stderr, "Failed to connect and authenticate.\n");
         return -1;
     }
 
-    printf("Connected to %s\n", hostname);
+    printf("succes swith connected and authenticated.\n");
 
-    while(1) {
+    while (1) {
         printf("ssh> ");
         if (fgets(command, sizeof(command), stdin) == NULL) {
-            fprintf(stderr, "Error reading command\n");
+            fprintf(stderr, "Error reading command.\n");
             break;
         }
 
@@ -37,8 +38,18 @@ int main() {
             break;
         }
 
+        if (strcmp(command, "clear") == 0) {
+            clearcmd();
+            continue;
+        }
+
         if (strcmp(command, "info") == 0) {
             infocmd(session);
+            continue;
+        }
+
+        if (strcmp(command, "help") == 0) {
+            helpcmd();
             continue;
         }
 
