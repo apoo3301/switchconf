@@ -7,6 +7,8 @@
 
 #include "../../../include/shell.h"
 
+#include "../../../include/shell.h"
+
 void execute_commands_from_file(ssh_session session) {
     FILE *cmd_file = fopen(COMMAND_FILE, "r");
     FILE *log_file = fopen(LOG_FILE, "w");
@@ -50,6 +52,7 @@ void execute_commands_from_file(ssh_session session) {
 
         if (ssh_channel_request_exec(channel, command) != SSH_OK) {
             fprintf(stderr, "Error executing command: %s\n", command);
+            fprintf(log_file, "Error executing command: %s\n", command);
             ssh_channel_close(channel);
             ssh_channel_free(channel);
             all_success = 0;
@@ -67,6 +70,7 @@ void execute_commands_from_file(ssh_session session) {
 
         if (nbytes < 0) {
             fprintf(stderr, "Error reading channel.\n");
+            fprintf(log_file, "Error reading channel for command: %s\n", command);
             all_success = 0;
         }
 
@@ -81,6 +85,7 @@ void execute_commands_from_file(ssh_session session) {
     if (all_success) {
         printf("All commands executed successfully.\n");
     } else {
-        printf("Some commands failed to execute.\n");
+        printf("Some commands failed to execute. Check the log for details.\n");
     }
 }
+
