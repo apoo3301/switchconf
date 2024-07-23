@@ -22,6 +22,7 @@ void execute_commands_from_file(ssh_session session) {
     }
 
     char command[256];
+    int all_success = 1;
     while (fgets(command, sizeof(command), cmd_file) != NULL) {
         size_t len = strlen(command);
         if (len > 0 && command[len - 1] == '\n') {
@@ -73,4 +74,10 @@ void execute_commands_from_file(ssh_session session) {
 
     fclose(cmd_file);
     fclose(log_file);
+
+    if (all_success) {
+        printf("All commands executed successfully.\n");
+    } else {
+        printf("Some commands failed to execute.\n");
+    }
 }
