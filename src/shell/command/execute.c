@@ -12,12 +12,13 @@ void execute_commands_from_file(ssh_session session) {
     FILE *log_file = fopen(LOG_FILE, "w");
 
     if (!cmd_file) {
-        fprintf(stderr, "Error opening command file.\n");
+        fprintf(stderr, "Error opening command file: %s\n", COMMAND_FILE);
         return;
     }
 
     if (!log_file) {
-        fprintf(stderr, "Error opening log file.\n");
+        fprintf(stderr, "Error opening log file: %s\n", LOG_FILE);
+        fclose(cmd_file);
         return;
     }
 
@@ -36,23 +37,22 @@ void execute_commands_from_file(ssh_session session) {
         ssh_channel channel = ssh_channel_new(session);
         if (channel == NULL) {
             fprintf(stderr, "Error creating channel.\n");
-            fclose(cmd_file);
-            fclose(log_file);
-            return;
+            all_success = 0;
+            break;
         }
 
         if (ssh_channel_open_session(channel) != SSH_OK) {
             fprintf(stderr, "Error opening channel.\n");
             ssh_channel_free(channel);
-            fclose(cmd_file);
-            fclose(log_file);
-            return;
+            all_success = 0;
+            break;
         }
 
         if (ssh_channel_request_exec(channel, command) != SSH_OK) {
-            fprintf(stderr, "Error executing command.\n");
+            fprintf(stderr, "Error executing command: %s\n", command);
             ssh_channel_close(channel);
             ssh_channel_free(channel);
+            all_success = 0;
             continue;
         }
 
@@ -65,6 +65,7 @@ void execute_commands_from_file(ssh_session session) {
 
         if (nbytes < 0) {
             fprintf(stderr, "Error reading channel.\n");
+            all_success = 0;
         }
 
         ssh_channel_send_eof(channel);

@@ -13,12 +13,13 @@
     #include <stdio.h>
     #include <string.h>
 
-    #define COMMAND_FILE "config/commands.txt"
-    #define LOG_FILE "output.log"
+    #define COMMAND_FILE "./config/command.txt"
+    #define LOG_FILE "./logs/output.log"
 
-    void infocmd(ssh_session session);
     void clearcmd(void);
+    void execute_commands_from_file(ssh_session session);
     void helpcmd(void);
+    void infocmd(ssh_session session);
     int execute_command(ssh_session session, const char *command);
     void process_cmd(ssh_session session);
 
