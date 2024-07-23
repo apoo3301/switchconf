@@ -1,1 +1,3 @@
 ip: 172.21.51.89
+username=apoo
+password=root
