@@ -46,8 +46,6 @@ void process_cmd(ssh_session session) {
             continue;
         }
 
-        if (execute_command(session, command) != SSH_OK) {
-            fprintf(stderr, "Error executing command.\n");
-        }
+        fprintf(stderr, "Unknown command: %s\n", command);
     }
 }
