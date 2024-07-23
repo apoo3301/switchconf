@@ -9,8 +9,8 @@
 #include "../../../include/ssh.h"
 
 void infocmd(ssh_session session) {
-    const char *hostname;
-    const char *username;
+    const char *hostname = "N/A";
+    const char *username = "N/A";
 
     if (ssh_options_get(session, SSH_OPTIONS_HOST, &hostname) != SSH_OK) {
         hostname = "N/A";
@@ -21,13 +21,13 @@ void infocmd(ssh_session session) {
 
     const char *green = "\033[1;32m";  // vert clair
     const char *purple = "\033[1;35m"; // violet clair
-    const char *reset = "\033[0m";     // reset la couleur
+    const char *reset = "\033[0m";     // réinitialiser la couleur
 
     printf("╭───┬───────────────────┬──────────────────────────────────────────────╮\n");
     printf("│ %s#%s │ %sField%s             │ %sValue%s                                        │\n", green, reset, green, reset, purple, reset);
     printf("├───┼───────────────────┼──────────────────────────────────────────────┤\n");
-    printf("│ %s1%s │ %sHostname%s          │ %s                                 │\n", green, reset, green, reset, hostname ? hostname : "N/A", reset);
-    printf("│ %s2%s │ %sUsername%s          │ %s                                         │\n", green, reset, green, reset, username ? username : "N/A", reset);
+    printf("│ %s1%s │ %sHostname%s          │ %s%-40s%s                                   │\n", green, reset, green, reset, hostname, reset);
+    printf("│ %s2%s │ %sUsername%s          │ %s%-40s%s                                   │\n", green, reset, green, reset, username, reset);
     printf("│ %s3%s │ %sStatus%s            │ %sConnected%s                                    │\n", green, reset, green, reset, green, reset);
     printf("╰───┴───────────────────┴──────────────────────────────────────────────╯\n");
 }

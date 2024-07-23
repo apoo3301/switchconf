@@ -13,10 +13,11 @@
     #include <stdio.h>
     #include <string.h>
 
-    #define CONFIG_FILE "./config/ip.txt"
+    #define CONFIG_FILE "ssh.txt"
 
     int authentification_password(ssh_session session, const char *password);
     ssh_session ssh_connect_session(const char *hostname, const char *username, const char *password);
+    void load_config(const char *filename, char *username, size_t username_size, char *password, size_t password_size);
 
 
 #endif
