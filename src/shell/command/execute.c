@@ -7,8 +7,6 @@
 
 #include "../../../include/shell.h"
 
-#include "../../../include/shell.h"
-
 void execute_commands_from_file(ssh_session session) {
     FILE *cmd_file = fopen(COMMAND_FILE, "r");
     FILE *log_file = fopen(LOG_FILE, "w");
