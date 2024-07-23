@@ -58,6 +58,8 @@ void execute_commands_from_file(ssh_session session) {
 
         char buffer[256];
         int nbytes;
+        fprintf(log_file, "Executing command: %s\n", command);
+        fprintf(stdout, "Executing command: %s\n", command);
         while ((nbytes = ssh_channel_read(channel, buffer, sizeof(buffer), 0)) > 0) {
             fwrite(buffer, 1, nbytes, log_file);
             fwrite(buffer, 1, nbytes, stdout);
