@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "ssh.h": "c",
-        "shell.h": "c"
+        "shell.h": "c",
+        "cli.h": "c",
+        "stdlib.h": "c"
     }
 }

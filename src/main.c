@@ -5,15 +5,18 @@
 ** main
 */
 
-#include "../include/ssh.h"
 #include "../include/shell.h"
+#include "../include/ssh.h"
+#include "../include/cli.h"
 
 int main() {
-    const char *hostname = "172.21.51.89";
+    char ip[256];
     const char *username = "apoo";
     const char *password = "root";
 
-    ssh_session session = ssh_connect_session(hostname, username, password);
+    get_ip_from_user(ip, sizeof(ip));
+
+    ssh_session session = ssh_connect_session(ip, username, password);
     if (session == NULL) {
         fprintf(stderr, "Failed to connect and authenticate.\n");
         return -1;

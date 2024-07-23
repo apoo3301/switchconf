@@ -27,6 +27,7 @@ BIN = switchconff
 
 # Liste des fichiers sources
 SRCS = $(SRC_DIR)/main.c \
+	   $(SRC_DIR)/cli/gethost.c \
        $(SRC_DIR)/ssh/auth.c \
        $(SRC_DIR)/ssh/connect.c \
        $(SRC_DIR)/shell/execmd.c \
@@ -37,6 +38,7 @@ SRCS = $(SRC_DIR)/main.c \
 
 # Liste des fichiers objets
 OBJS = $(OBJ_DIR)/main.o \
+	   $(OBJ_DIR)/cli/gethost.o \
        $(OBJ_DIR)/ssh/auth.o \
        $(OBJ_DIR)/ssh/connect.o \
        $(OBJ_DIR)/shell/execmd.o \
