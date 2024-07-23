@@ -11,9 +11,10 @@
 
 int main() {
     char ip[256];
-    const char *username = "apoo";
-    const char *password = "root";
+    char username[256];
+    char password[256];
 
+    load_config(CONFIG_FILE, username, sizeof(username), password, sizeof(password));
     get_ip_from_user(ip, sizeof(ip));
 
     ssh_session session = ssh_connect_session(ip, username, password);
@@ -23,9 +24,7 @@ int main() {
     }
 
     printf("Successfully connected and authenticated.\n");
-
     process_cmd(session);
-
     ssh_disconnect(session);
     ssh_free(session);
 

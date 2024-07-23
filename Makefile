@@ -30,6 +30,7 @@ SRCS = $(SRC_DIR)/main.c \
 	$(SRC_DIR)/cli/gethost.c \
        $(SRC_DIR)/ssh/auth.c \
        $(SRC_DIR)/ssh/connect.c \
+       $(SRC_DIR)/ssh/loadconf.c \
        $(SRC_DIR)/shell/execmd.c \
 	$(SRC_DIR)/shell/processcmd.c \
        $(SRC_DIR)/shell/command/info.c \
@@ -42,6 +43,7 @@ OBJS = $(OBJ_DIR)/main.o \
 	$(OBJ_DIR)/cli/gethost.o \
        $(OBJ_DIR)/ssh/auth.o \
        $(OBJ_DIR)/ssh/connect.o \
+       $(OBJ_DIR)/ssh/loadconf.o \
        $(OBJ_DIR)/shell/execmd.o \
 	$(OBJ_DIR)/shell/processcmd.o \
        $(OBJ_DIR)/shell/command/info.o \
