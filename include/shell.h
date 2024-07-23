@@ -13,6 +13,9 @@
     #include <stdio.h>
     #include <string.h>
 
+    #define COMMAND_FILE "config/commands.txt"
+    #define LOG_FILE "output.log"
+
     void infocmd(ssh_session session);
     void clearcmd(void);
     void helpcmd(void);
