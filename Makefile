@@ -30,6 +30,7 @@ SRCS = $(SRC_DIR)/main.c \
        $(SRC_DIR)/ssh/auth.c \
        $(SRC_DIR)/ssh/connect.c \
        $(SRC_DIR)/shell/execmd.c \
+	   	$(SRC_DIR)/shell/processcmd.c \
        $(SRC_DIR)/shell/command/info.c \
        $(SRC_DIR)/shell/command/clear.c \
        $(SRC_DIR)/shell/command/help.c
@@ -39,9 +40,10 @@ OBJS = $(OBJ_DIR)/main.o \
        $(OBJ_DIR)/ssh/auth.o \
        $(OBJ_DIR)/ssh/connect.o \
        $(OBJ_DIR)/shell/execmd.o \
+	   $(OBJ_DIR)/shell/processcmd.o \
        $(OBJ_DIR)/shell/command/info.o \
        $(OBJ_DIR)/shell/command/clear.o \
-       $(OBJ_DIR)/shell/command/help.o
+       $(OBJ_DIR)/shell/command/help.o 
 
 # Règle principale
 all: $(BIN)

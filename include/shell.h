@@ -17,6 +17,7 @@
     void clearcmd(void);
     void helpcmd(void);
     int execute_command(ssh_session session, const char *command);
+    void process_cmd(ssh_session session);
 
 #endif
 
